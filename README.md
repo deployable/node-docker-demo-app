@@ -1,9 +1,9 @@
 # node-docker-app
 
-A node app in docker with various internal supervisors
+A simple demo node app in docker with various internal supervisor setups
 
-- plain, requires sigint/sigterm handlers
-- [supervisor]()
-- [s6]()
-- [forever]()
+- plain, requires sigint/sigterm handlers in node.
+- [supervisor](http://supervisord.org/)
+- [s6](https://github.com/just-containers/s6-overlay)
+- [forever](https://github.com/foreverjs/forever)
 
