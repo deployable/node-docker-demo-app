@@ -1,0 +1,20 @@
+{
+  "name": "node-docker-app",
+  "version": "1.0.0",
+  "description": "A node app in docker with various supervisors",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "test",
+    "node",
+    "app"
+  ],
+  "author": "Matt Hoyle",
+  "license": "MIT",
+  "dependencies": {
+    "forever": "~0.15.3",
+    "lodash": "~4.17.3"
+  }
+}

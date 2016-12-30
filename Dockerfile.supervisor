@@ -1,0 +1,28 @@
+FROM node:6.9.2
+
+ARG DOCKER_BUILD_PROXY
+ENV DOCKER_BUILD_PROXY $DOCKER_BUILD_PROXY
+
+RUN set -uex; \
+    export http_proxy=${DOCKER_BUILD_PROXY}; \
+    apt-get update --fix-missing; \
+    apt-get install -y python-pip; \
+    pip install supervisor supervisor-stdout; \
+    apt-get clean; \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*; \
+    apt-get autoremove -y
+
+RUN ln -s /usr/local/bin/node /usr/bin/nodejs 
+
+ADD supervisord.conf /etc/supervisor/conf.d/nodejs.conf
+
+ADD package.json /
+RUN npm install
+
+WORKDIR /app
+ADD . /app
+#RUN npm update
+
+EXPOSE 8080
+CMD ["/usr/bin/supervisord", "-n"]
+

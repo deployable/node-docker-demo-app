@@ -1,0 +1,19 @@
+FROM node:6.9.2
+
+ARG DOCKER_BUILD_PROXY
+ENV DOCKER_BUILD_PROXY $DOCKER_BUILD_PROXY
+
+RUN set -uex; \
+    curl --location https://github.com/just-containers/s6-overlay/releases/download/v1.18.1.5/s6-overlay-amd64.tar.gz > /tmp/s6-overlay-amd64.tar.gz; \
+    tar xzf /tmp/s6-overlay-amd64.tar.gz -C /; \
+    ln -s /usr/local/bin/node /usr/bin/nodejs 
+
+ADD package.json /
+RUN npm install
+
+WORKDIR /app
+ADD . /app
+
+EXPOSE 8080
+ENTRYPOINT ["/init"]
+CMD ["/usr/bin/nodejs", "/app/index.js"]
