@@ -4,7 +4,7 @@
   "description": "A node app in docker with various supervisors",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "curl -s http://localhost:8080"
   },
   "keywords": [
     "test",
