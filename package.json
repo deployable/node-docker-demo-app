@@ -1,5 +1,5 @@
 {
-  "name": "node-docker-app",
+  "name": "node-docker-demo-app",
   "version": "1.0.0",
   "description": "A node app in docker with various supervisors",
   "main": "index.js",
