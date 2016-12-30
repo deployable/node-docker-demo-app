@@ -1,11 +1,7 @@
 FROM node:6.9.2
 
-ARG DOCKER_BUILD_PROXY
-ENV DOCKER_BUILD_PROXY $DOCKER_BUILD_PROXY
-
 RUN set -uex; \
-#    export http_proxy=${DOCKER_BUILD_PROXY}; \
-#    npm install --no-cache -g forever; \
+    npm install --no-cache -g forever; \
     ln -s /usr/local/bin/node /usr/bin/nodejs 
 
 ADD package.json /
