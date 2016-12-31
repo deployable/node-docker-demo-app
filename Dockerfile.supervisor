@@ -14,7 +14,8 @@ RUN set -uex; \
 
 RUN ln -s /usr/local/bin/node /usr/bin/nodejs 
 
-ADD supervisord.conf /etc/supervisor/conf.d/nodejs.conf
+ADD supervisord.conf /etc/supervisor/supervisord.conf
+ADD supervisord-app.conf /etc/supervisor/conf.d/nodejs.conf
 
 ADD package.json /
 RUN npm install
@@ -24,5 +25,5 @@ ADD . /app
 #RUN npm update
 
 EXPOSE 8080
-CMD ["/usr/bin/supervisord", "-n"]
+CMD ["/usr/local/bin/supervisord", "-n"]
 
