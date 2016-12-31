@@ -1,5 +1,7 @@
 FROM node:6.9.2
 
+# `forever` doesn't handle a `sigterm` or `sigint` properly when run in the foreground
+
 RUN set -uex; \
     npm install --no-cache -g forever; \
     ln -s /usr/local/bin/node /usr/bin/nodejs 
@@ -11,5 +13,5 @@ WORKDIR /app
 ADD . /app
 
 EXPOSE 8080
-CMD ["forever"]
+CMD ["forever", "/app/index.js"]
 
