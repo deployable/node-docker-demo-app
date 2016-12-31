@@ -1,6 +1,6 @@
-# node-docker-app
+# Sample Docker Node.js app
 
-A simple demo node app in docker with various internal supervisor setups
+A simple demo node app running in docker with various upervisor setups
 
 - plain
 - [supervisor](http://supervisord.org/)
@@ -8,6 +8,8 @@ A simple demo node app in docker with various internal supervisor setups
 - [forever](https://github.com/foreverjs/forever)
 
 ## Plain
+
+The app must handle sigint and sigterm when running as PID 1 in Docker
 
     docker build -f Dockerfile.plain -t node-service-plain .
     docker run -p 8080:8080 node-service-plain
@@ -20,6 +22,8 @@ A simple demo node app in docker with various internal supervisor setups
     curl http://localhost:8080
 
 ## forever
+
+Foever doesn't handle sigint and sigterm when running a script in the foreground
 
     docker build -f Dockerfile.plain -t node-service-forever .
     docker run -p 8080:8080 node-service-forever
