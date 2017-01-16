@@ -1,13 +1,14 @@
 const http = require('http')
 
-http.createServer(function(request, response) {
+http.createServer((request, response)=> {
   response.writeHead(200)
   console.log('%s request!', Date.now())
   response.write("hello!")
   response.end()
-}).listen(8080);
+}).listen(8080, ()=> console.log('Listening on 8080'))
 
-
+// A process needs to handle any signals if it's running
+// as PID 1 in Docker
 process.on('SIGTERM', () => {
   console.log('sigterm')
   process.exit(0)
