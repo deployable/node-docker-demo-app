@@ -1,13 +1,15 @@
 FROM node:6.9.4
 
-RUN ln -s /usr/local/bin/node /usr/bin/nodejs 
-
-ADD package.json /
-RUN npm install
-
 WORKDIR /app
+
+ADD package.json /app
+RUN set -uex; \
+    npm install; \
+    npm cache clean;
+
 ADD . /app
 
+USER nobody
 EXPOSE 8080
-CMD ["/usr/bin/nodejs", "/app/index.js"]
+CMD ["/usr/local/bin/node", "/app/index.js"]
 

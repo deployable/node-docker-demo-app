@@ -3,10 +3,13 @@ FROM mhart/alpine-node:6.9.4
 WORKDIR /app
 
 ADD package.json /app
-RUN npm install
+RUN set -uex; \
+    npm install; \
+    rm -rf /root/.npm;
 
 ADD . /app
 
+USER nobody
 EXPOSE 8080
 CMD ["/usr/bin/node", "/app/index.js"]
 

@@ -1,17 +1,20 @@
-FROM node:6.9.4
+FROM mhart/alpine-node:6.9.4
 
 # `forever` doesn't handle a `sigterm` or `sigint` properly when run in the foreground
 
+# alpine has trouble recreating the cache dir after an `npm cache clean`, use `rm` instead
 RUN set -uex; \
     npm install -g forever; \
-    npm cache clean;
+    rm -rf /root/.npm;
 
 WORKDIR /app
 
 ADD package.json /app
 RUN set -uex; \
-    npm install; \
-    npm cache clean:
+    cd /app; \
+    npm install -d; \
+    rm -rf  /root/.npm;
+
 
 ADD . /app
 

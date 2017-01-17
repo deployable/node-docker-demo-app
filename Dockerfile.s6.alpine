@@ -1,21 +1,22 @@
-FROM node:6.9.4
+FROM mhart/alpine-node:6.9.4
 
-ARG DOCKER_BUILD_PROXY
-ENV DOCKER_BUILD_PROXY $DOCKER_BUILD_PROXY
+ARG DOCKER_BUILD_PROXY=""
 
 RUN set -uex; \
+    http_proxy=$DOCKER_BUILD_PROXY apk update; \
+    http_proxy=$DOCKER_BUILD_PROXY apk add curl; \
     curl --location https://github.com/just-containers/s6-overlay/releases/download/v1.18.1.5/s6-overlay-amd64.tar.gz.asc > /tmp/s6-overlay-amd64.tar.gz.asc; \
     http_proxy=$DOCKER_BUILD_PROXY curl --location http://github.com/just-containers/s6-overlay/releases/download/v1.18.1.5/s6-overlay-amd64.tar.gz > /tmp/s6-overlay-amd64.tar.gz; \
     tar xzf /tmp/s6-overlay-amd64.tar.gz -C /; \
     rm -rf /tmp/*; \
-    ln -s /usr/local/bin/node /usr/bin/node
+    apk del curl;
 
 WORKDIR /app
 
 ADD package.json /app
 RUN set -uex; \
     npm install; \
-    npm cache clean
+    rm -rf /root/.npm
 
 ADD s6-node.run /etc/services.d/node-app/run
 

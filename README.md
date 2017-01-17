@@ -1,15 +1,17 @@
-# Sample Docker Node.js app
+# Supervision of Docker Node.js app
 
-A simple demo node app running in docker with various upervisor setups
+A simple demo node app running in Docker with various supervisor setups.
+Examples on on both the Debian based [node](https://hub.docker.com/_/node)  image and
+ the Alpine [mhart/alpine-node](https://hub.docker.com/r/mhart/alpine-node) image.
 
-- plain
+- Plain Docker
 - [supervisor](http://supervisord.org/)
 - [s6](https://github.com/just-containers/s6-overlay)
 - [forever](https://github.com/foreverjs/forever)
 
 ## Plain
 
-The app must handle sigint and sigterm when running as PID 1 in Docker
+The app must handle the sigint (ctrl-c) and sigterm (`docker stop`) signals when running as PID 1 in Docker
 
     docker build -f Dockerfile.plain -t node-service-plain .
     docker run -p 8080:8080 node-service-plain

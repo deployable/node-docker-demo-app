@@ -1,0 +1,25 @@
+FROM mhart/alpine-node:6.9.4
+
+ARG DOCKER_BUILD_PROXY=""
+
+RUN set -uex; \
+    export http_proxy=${DOCKER_BUILD_PROXY}; \
+    apk update; \
+    apk add py-pip; \
+    pip install supervisor supervisor-stdout; 
+
+ADD supervisord.conf /etc/supervisor/supervisord.conf
+ADD supervisord-node.conf /etc/supervisor/conf.d/node-app.conf
+
+WORKDIR /app
+
+ADD package.json /app
+RUN set -uex; \ 
+    npm install; \
+    rm -rf /root/.npm;
+
+ADD . /app
+
+EXPOSE 8080
+CMD ["/usr/local/bin/supervisord", "-n"]
+
