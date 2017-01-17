@@ -8,7 +8,7 @@ DOCKER_BUILD_PROXY=${DOCKER_BUILD_PROXY:-}
 docker_build(){
   local tag=${1}
   args=""
-  docker build $args -f "Dockerfile.$dockerfile" -t dply/node-docker-demo-app:$tag .
+  docker build $args -f "Dockerfile.$tag" -t dply/node-docker-demo-app:$tag .
 }
 
 docker_build_proxy(){
