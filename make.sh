@@ -19,7 +19,10 @@ NAME="node-docker-demo-app"
 SCOPE_NAME="${SCOPE}/${NAME}"
 PORT=8080
 
+
 ## Builds
+
+### Helpers
 
 docker_build(){
   local tag=${1}
@@ -33,6 +36,8 @@ docker_build_proxy(){
   [ -z $DOCKER_BUILD_PROXY ] || args="$args --build-arg DOCKER_BUILD_PROXY=${DOCKER_BUILD_PROXY}"
   docker build $args -f "$dockerfile" .
 }
+
+### Commands
 
 build(){
   build_plain
