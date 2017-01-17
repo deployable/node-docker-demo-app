@@ -1,14 +1,30 @@
 #!/usr/bin/env bash
 
+# Setup
+
 set -uex -o pipefail
 
-ARGS="${@:-build}"
+which greadlink >/dev/null 2>&1 && readlink=greadlink || readlink=readlink
+rundir=$($readlink -f "${0%/*}")
+cd $rundir
+
+
+## Varibles
+
+ARGS="$@"
+[ -z "$ARGS"] && set -- build
 DOCKER_BUILD_PROXY=${DOCKER_BUILD_PROXY:-}
+SCOPE="dply"
+NAME="node-docker-demo-app"
+SCOPE_NAME="${SCOPE}/${NAME}"
+PORT=8080
+
+## Builds
 
 docker_build(){
   local tag=${1}
   args=""
-  docker build $args -f "Dockerfile.$tag" -t dply/node-docker-demo-app:$tag .
+  docker build $args -f "Dockerfile.$tag" -t ${SCOPE_NAME}:$tag .
 }
 
 docker_build_proxy(){
@@ -77,4 +93,23 @@ build_supervisor_alpine(){
   docker_build supervisor-alpine
 }
 
-"$ARGS"
+
+## Run
+
+run_image(){
+  local tag=${1:-plain}
+  docker run -p "${PORT}:8080" "${SCOPE_NAME}:${tag}"
+}
+
+run(){
+  run_image "$@"
+}
+
+help(){
+  set +x
+  echo "Available commands:"
+  compgen -A function | awk '{print " ",$0}'
+}
+
+"$@"
+
