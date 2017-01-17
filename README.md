@@ -1,7 +1,8 @@
 # Docker Node.js Application Supervision
 
 A simple demo node app running in Docker with various supervisor setups.
-Examples on on both the Debian based [node](https://hub.docker.com/_/node)  image and
+
+Examples have both the Debian based [node](https://hub.docker.com/_/node) image and
  the Alpine [mhart/alpine-node](https://hub.docker.com/r/mhart/alpine-node) image.
 
 - Plain Docker
