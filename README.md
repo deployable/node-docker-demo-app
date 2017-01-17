@@ -51,6 +51,8 @@ The default is `./make.sh build`
 
 `./make.sh run s6-alpine`
 
+`./make.sh test`
+
 `./make.sh build plain`
 
 `./make.sh run plain`

@@ -12,7 +12,7 @@ cd $rundir
 ## Varibles
 
 ARGS="$@"
-[ -z "$ARGS"] && set -- build
+[ -z "$ARGS" ] && set -- build
 DOCKER_BUILD_PROXY=${DOCKER_BUILD_PROXY:-}
 SCOPE="dply"
 NAME="node-docker-demo-app"
@@ -104,6 +104,25 @@ run_image(){
 run(){
   run_image "$@"
 }
+
+## Test
+
+test_request(){
+  local response
+  response=$(curl http://localhost:${PORT}/)
+  set +x
+  if [ "$response" != "hello!" ]; then 
+    echo "Error: Response "$response" was unexpected"
+    exit 1
+  else 
+    echo "$response"
+  fi
+}
+
+test(){
+  test_request
+}
+
 
 help(){
   set +x
