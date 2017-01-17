@@ -1,4 +1,4 @@
-# Supervision of Docker Node.js app
+# Docker Node.js Application Supervision
 
 A simple demo node app running in Docker with various supervisor setups.
 Examples on on both the Debian based [node](https://hub.docker.com/_/node)  image and
