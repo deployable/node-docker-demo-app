@@ -9,7 +9,7 @@ Examples on on both the Debian based [node](https://hub.docker.com/_/node)  imag
 - [s6](http://skarnet.org/software/s6/overview.html)
 - [forever](https://github.com/foreverjs/forever)
 
-## Plain
+## Plain Node + Docker
 
 The app must handle the sigint (ctrl-c) and sigterm (`docker stop`) signals when running as PID 1 in Docker
 
