@@ -14,7 +14,7 @@ Examples on on both the Debian based [node](https://hub.docker.com/_/node)  imag
 The app must handle the sigint (ctrl-c) and sigterm (`docker stop`) signals when running as PID 1 in Docker
 
     docker build -f Dockerfile.plain -t dply/node-docker-demo-app:plain .
-    docker run -p 8080:8080 node-service-plain
+    docker run -p 8080:8080 --restart always dply/node-docker-demo-app:plain
     curl http://localhost:8080
 
 ## s6
