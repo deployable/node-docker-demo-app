@@ -13,6 +13,7 @@ process.on('SIGTERM', () => {
   console.log('sigterm')
   process.exit(0)
 })
+
 process.on('SIGINT', () => {
   console.log('sigint')
   process.exit(0)
