@@ -3,7 +3,7 @@
 A simple demo node app running in Docker with various supervisor setups.
 
 Examples have both the Debian based [node](https://hub.docker.com/_/node) image and
- the Alpine [mhart/alpine-node](https://hub.docker.com/r/mhart/alpine-node) image.
+ the Alpine [mhart/alpine-node](https://hub.docker.com/r/mhart/alpine-node) image using Node v6.x
 
 - Plain Docker
 - [supervisor](http://supervisord.org/)
