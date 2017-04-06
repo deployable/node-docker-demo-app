@@ -1,4 +1,4 @@
-FROM node:6.9.5
+FROM node:6.10.2
 
 # `forever` doesn't handle a `sigterm` or `sigint` properly when run in the foreground
 

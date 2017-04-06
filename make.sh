@@ -101,6 +101,12 @@ build_supervisor_alpine(){
 
 ## Run
 
+run_update(){
+  local version=$1
+  sed -i '' -e 's!^FROM mhart/alpine-node:.*!FROM mhart/alpine-node:'$version'!' Dockerfile.*alpine
+  sed -i '' -e 's!^FROM node:.*!FROM node:'$version'!' Dockerfile.*
+}
+
 run_image(){
   local tag=${1:-plain}
   docker run -p "${PORT}:8080" "${SCOPE_NAME}:${tag}"
