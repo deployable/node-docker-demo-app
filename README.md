@@ -15,7 +15,7 @@ Examples have both the Debian based [node](https://hub.docker.com/_/node) image 
 The app must handle the sigint (ctrl-c) and sigterm (`docker stop`) signals when running as PID 1 in Docker
 
     docker build -f Dockerfile.plain -t dply/node-docker-demo-app:plain .
-    docker run -p 8080:8080 --restart always dply/node-docker-demo-app:plain
+    docker run -dp 8080:8080 --restart always dply/node-docker-demo-app:plain
     curl http://localhost:8080
 
 ## s6
@@ -23,7 +23,7 @@ The app must handle the sigint (ctrl-c) and sigterm (`docker stop`) signals when
 Uses the [s6-overlay](https://github.com/just-containers/s6-overlay) project.
 
     docker build -f Dockerfile.s6 -t dply/node-docker-demo-app:s6 .
-    docker run -p 8080:8080 dply/node-docker-demo-app:s6
+    docker run -dp 8080:8080 dply/node-docker-demo-app:s6
     curl http://localhost:8080
 
 ## forever
@@ -31,7 +31,15 @@ Uses the [s6-overlay](https://github.com/just-containers/s6-overlay) project.
 Forever doesn't handle sigint and sigterm when running a script in the foreground.
 
     docker build -f Dockerfile.plain -t dply/node-docker-demo-app:forever .
-    docker run -p 8080:8080 dply/node-docker-demo-app:forever
+    docker run -dp 8080:8080 dply/node-docker-demo-app:forever
+    curl http://localhost:8080
+
+## nodemon
+
+`-ti` is required to attach and control nodemon
+
+    docker build -f Dockerfile.nodemon -t dply/node-docker-demo-app:nodemon .
+    docker run -dtip 8080:8080 dply/node-docker-demo-app:nodemon
     curl http://localhost:8080
 
 ## supervisor
@@ -40,7 +48,7 @@ Supervisor is easy to configure and provides an XMLRPC API to programatically
 manage your services running in Docker
 
     docker build -f Dockerfile.plain -t dply/node-docker-demo-app:supervisor .
-    docker run -p 8080:8080 dply/node-docker-demo-app:supervisor
+    docker run -dp 8080:8080 dply/node-docker-demo-app:supervisor
     curl http://localhost:8080
 
 ## make.sh
