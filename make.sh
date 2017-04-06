@@ -42,6 +42,7 @@ docker_build_proxy(){
 build(){
   build_plain
   build_forever
+  build_nodemon
   build_s6
   build_supervisor
 }
@@ -70,6 +71,19 @@ build_forever_node(){
 
 build_forever_alpine(){
   docker_build forever-alpine
+}
+
+build_nodemon(){
+  build_nodemon_node
+  build_nodemon_alpine
+}
+
+build_nodemon_node(){
+  docker_build nodemon
+}
+
+build_nodemon_alpine(){
+  docker_build nodemon-alpine
 }
 
 build_s6(){

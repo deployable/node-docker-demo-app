@@ -1,0 +1,25 @@
+FROM node:6.10.2
+
+# `forever` doesn't handle a `sigterm` or `sigint` properly when run in the foreground
+
+# alpine has trouble recreating the cache dir after an `npm cache clean`, use `rm` instead
+RUN set -uex; \
+    npm install -g nodemon; \
+    rm -rf /root/.npm;
+
+WORKDIR /app
+
+ADD package.json /app
+RUN set -uex; \
+    cd /app; \
+    npm install -d; \
+    rm -rf  /root/.npm; \
+    mkdir -p /.config/configstore; \
+    chown -R nobody /.config
+
+ADD . /app
+
+USER nobody
+EXPOSE 8080
+CMD ["nodemon", "/app/index.js"]
+
