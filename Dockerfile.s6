@@ -1,11 +1,11 @@
 FROM node:6.10.2
 
-ARG DOCKER_BUILD_PROXY
+ARG DOCKER_BUILD_PROXY 
 ENV DOCKER_BUILD_PROXY $DOCKER_BUILD_PROXY
 
 RUN set -uex; \
     curl --location https://github.com/just-containers/s6-overlay/releases/download/v1.18.1.5/s6-overlay-amd64.tar.gz.asc > /tmp/s6-overlay-amd64.tar.gz.asc; \
-    http_proxy=$DOCKER_BUILD_PROXY curl --location http://github.com/just-containers/s6-overlay/releases/download/v1.18.1.5/s6-overlay-amd64.tar.gz > /tmp/s6-overlay-amd64.tar.gz; \
+    http_proxy=$DOCKER_BUILD_PROXY curl --location http://github.com/just-containers/s6-overlay/releases/download/v1.19.1.1/s6-overlay-amd64.tar.gz > /tmp/s6-overlay-amd64.tar.gz; \
     tar xzf /tmp/s6-overlay-amd64.tar.gz -C /; \
     rm -rf /tmp/*; \
     ln -s /usr/local/bin/node /usr/bin/node
