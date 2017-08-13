@@ -27,15 +27,10 @@ PORT=8080
 docker_build(){
   local tag=${1}
   args=""
+  [ -z $DOCKER_BUILD_PROXY ] || args="$args --build-arg DOCKER_BUILD_PROXY=${DOCKER_BUILD_PROXY}"
   docker build $args -f "Dockerfile.$tag" -t ${SCOPE_NAME}:$tag .
 }
 
-docker_build_proxy(){
-  local dockerfile=${1:-Dockerfile}
-  args=""
-  [ -z $DOCKER_BUILD_PROXY ] || args="$args --build-arg DOCKER_BUILD_PROXY=${DOCKER_BUILD_PROXY}"
-  docker build $args -f "$dockerfile" .
-}
 
 ### Commands
 
@@ -47,6 +42,7 @@ build(){
   build_supervisor
 }
 
+# plain
 build_plain(){
   build_plain_node
   build_plain_alpine
@@ -60,6 +56,8 @@ build_plain_alpine(){
   docker_build plain-alpine
 }
 
+
+# forever
 build_forever(){
   build_forever_node
   build_forever_alpine
@@ -73,6 +71,8 @@ build_forever_alpine(){
   docker_build forever-alpine
 }
 
+
+# nodemon
 build_nodemon(){
   build_nodemon_node
   build_nodemon_alpine
@@ -86,6 +86,8 @@ build_nodemon_alpine(){
   docker_build nodemon-alpine
 }
 
+
+# s6
 build_s6(){
   build_s6_node
   build_s6_alpine
@@ -99,6 +101,8 @@ build_s6_alpine(){
   docker_build s6-alpine
 }
 
+
+# supervisor
 build_supervisor(){
   build_supervisor_node
   build_supervisor_alpine
@@ -156,4 +160,3 @@ help(){
 }
 
 "$@"
-
