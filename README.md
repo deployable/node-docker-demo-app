@@ -2,8 +2,8 @@
 
 A simple demo node app running in Docker with various process management setups.
 
-Examples have both the Debian based [node](https://hub.docker.com/_/node) image and
- the Alpine [mhart/alpine-node](https://hub.docker.com/r/mhart/alpine-node) image using Node v8.x
+Examples have both the Debian based [`node`](https://hub.docker.com/_/node) image and
+ the Alpine [`mhart/alpine-node`](https://hub.docker.com/r/mhart/alpine-node) image using Node v8.x
 
 The node app will run as `nobody` in each setup. 
 
