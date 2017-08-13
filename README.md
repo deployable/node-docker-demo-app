@@ -1,17 +1,18 @@
 # Docker Node.js Application Supervision
 
-A simple demo node app running in Docker with various process management setups.
-
-Examples have both the Debian based [`node`](https://hub.docker.com/_/node) image and
- the Alpine [`mhart/alpine-node`](https://hub.docker.com/r/mhart/alpine-node) image using Node v8.x
-
-The node app will run as `nobody` in each setup. 
+Examples of running a nodejs app under Docker with various process managers. 
 
 - Plain Docker
 - [supervisor](http://supervisord.org/)
 - [s6](http://skarnet.org/software/s6/overview.html)
 - [nodemon](https://nodemon.io/)
 - [forever](https://github.com/foreverjs/forever)
+
+Examples have both the Debian based [`node`](https://hub.docker.com/_/node) image and
+ the Alpine [`mhart/alpine-node`](https://hub.docker.com/r/mhart/alpine-node) image using Node v8.x
+
+The node app will run as `nobody` in each setup. 
+
 
 ## Plain Node + Docker
 
