@@ -1,4 +1,4 @@
-FROM node:6.10.2
+FROM node:8.3.0
 
 ARG DOCKER_BUILD_PROXY
 ENV DOCKER_BUILD_PROXY $DOCKER_BUILD_PROXY
@@ -22,10 +22,9 @@ WORKDIR /app
 ADD package.json /app
 RUN set -uex; \
     npm install; \
-    npm cache clean; 
+    npm cache clean --force; 
 
 ADD . /app
 
 EXPOSE 8080
 CMD ["/usr/local/bin/supervisord", "-n"]
-

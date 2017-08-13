@@ -1,15 +1,14 @@
-FROM node:6.10.2
+FROM node:8.3.0
 
 WORKDIR /app
 
 ADD package.json /app
 RUN set -uex; \
     npm install; \
-    npm cache clean;
+    npm cache clean --force;
 
 ADD . /app
 
 USER nobody
 EXPOSE 8080
 CMD ["/usr/local/bin/node", "/app/index.js"]
-

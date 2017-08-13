@@ -1,21 +1,20 @@
-FROM node:6.10.2
+FROM node:8.3.0
 
 # `forever` doesn't handle a `sigterm` or `sigint` properly when run in the foreground
 
 RUN set -uex; \
     npm install -g forever; \
-    npm cache clean;
+    npm cache clean --force;
 
 WORKDIR /app
 
 ADD package.json /app
 RUN set -uex; \
     npm install; \
-    npm cache clean;
+    npm cache clean --force;
 
 ADD . /app
 
 USER nobody
 EXPOSE 8080
 CMD ["forever", "/app/index.js"]
-
