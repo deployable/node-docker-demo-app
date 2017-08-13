@@ -8,6 +8,7 @@ Examples have both the Debian based [node](https://hub.docker.com/_/node) image 
 - Plain Docker
 - [supervisor](http://supervisord.org/)
 - [s6](http://skarnet.org/software/s6/overview.html)
+- [nodemon](https://nodemon.io/)
 - [forever](https://github.com/foreverjs/forever)
 
 ## Plain Node + Docker
