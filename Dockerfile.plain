@@ -1,10 +1,10 @@
-FROM node:8.3.0
+FROM node:8.6
 
 WORKDIR /app
 
 ADD package.json /app
 RUN set -uex; \
-    npm install; \
+    npm install --production; \
     npm cache clean --force;
 
 ADD . /app
