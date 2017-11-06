@@ -134,6 +134,13 @@ run(){
   run_image "$@"
 }
 
+## versions
+
+versions(){
+  versions_versions=$(curl -s https://nodejs.org/dist/index.json)
+  echo "$versions_versions" | head -10
+}
+
 ## Test
 
 test_request(){

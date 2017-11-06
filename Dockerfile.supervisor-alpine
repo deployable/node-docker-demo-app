@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:8.6
+FROM mhart/alpine-node:8.9.0
 
 ARG DOCKER_BUILD_PROXY=""
 
