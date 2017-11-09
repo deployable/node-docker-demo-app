@@ -121,8 +121,8 @@ build_supervisor_alpine(){
 
 run_update(){
   local version=$1
-  sed -i '' -e 's!^FROM mhart/alpine-node:.*!FROM mhart/alpine-node:'$version'!' Dockerfile.*alpine
-  sed -i '' -e 's!^FROM node:.*!FROM node:'$version'!' Dockerfile.*
+  sed -i '' -e 's!^FROM node:.*-alpine!FROM node:'$version'-alpine!' Dockerfile.*-alpine
+  sed -i '' -e 's!^FROM node:[0-9\.]*$!FROM node:'$version'!' Dockerfile.[a-zA-Z0-9][a-zA-Z0-9]*
 }
 
 run_image(){
