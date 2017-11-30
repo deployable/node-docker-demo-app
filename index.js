@@ -9,12 +9,6 @@ const server = http.createServer((req, res)=> {
 
 // A process needs to handle any signals if it's running
 // as PID 1 in Docker
-process.on('SIGTERM', () => {
-  console.log('sigterm')
-  process.exit(0)
-})
-
-process.on('SIGINT', () => {
-  console.log('sigint')
-  process.exit(0)
-})
+process.on('SIGTERM', () => { console.error('SIGTERM, exiting'); process.exit(0) })
+process.on('SIGINT',  () => { console.error('SIGINT, exiting'); process.exit(0) })
+process.on('SIGUSR2', () => { console.error('SIGUSR2, exiting'); process.exit(0) })
