@@ -9,7 +9,7 @@ Examples of running a nodejs app under Docker with various process managers.
 - [forever](https://github.com/foreverjs/forever)
 
 Examples have both the Debian based [`node`](https://hub.docker.com/_/node) image and
- the Alpine [`mhart/alpine-node`](https://hub.docker.com/r/mhart/alpine-node) image using Node v8.x
+ the Alpine [`mhart/alpine-node`](https://hub.docker.com/r/mhart/alpine-node) image using Node v8.9.3
 
 The node app will run as `nobody` in each setup. 
 
