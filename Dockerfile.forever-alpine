@@ -1,4 +1,6 @@
-FROM node:8.9.3-alpine
+ARG NODE_VERSION="8.9.4"
+
+FROM node:$NODE_VERSION-alpine
 
 # `forever` doesn't handle a `sigterm` or `sigint` properly when run in the foreground
 

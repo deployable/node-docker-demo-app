@@ -121,8 +121,10 @@ build_supervisor_alpine(){
 
 run_update(){
   local version=$1
-  sed -i '' -e 's!^FROM node:.*-alpine!FROM node:'$version'-alpine!' Dockerfile.*-alpine
-  sed -i '' -e 's!^FROM node:[0-9\.]*$!FROM node:'$version'!' Dockerfile.[a-zA-Z0-9][a-zA-Z0-9]*
+  # pre Docker 1.13 updates, when FROM couldnt be a variable
+  #sed -i '' -e 's!^FROM node:.*-alpine!FROM node:'$version'-alpine!' Dockerfile.*-alpine
+  #sed -i '' -e 's!^FROM node:[0-9\.]*$!FROM node:'$version'!' Dockerfile.[a-zA-Z0-9][a-zA-Z0-9]*
+  sed -i '' -e 's!^ARG NODE_VERSION=".*"!ARG NODE_VERSION="'$version'"!' Dockerfile*
 }
 
 run_image(){
