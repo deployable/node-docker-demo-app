@@ -14,6 +14,7 @@ cd $rundir
 ARGS="$@"
 [ -z "$ARGS" ] && set -- build
 DOCKER_BUILD_PROXY=${DOCKER_BUILD_PROXY:-}
+DOCKER_NODE_VERSION=${DOCKER_NODE_VERSION:-}
 SCOPE="dply"
 NAME="node-docker-demo-app"
 SCOPE_NAME="${SCOPE}/${NAME}"
@@ -28,6 +29,7 @@ docker_build(){
   local tag=${1}
   args=""
   [ -z $DOCKER_BUILD_PROXY ] || args="$args --build-arg DOCKER_BUILD_PROXY=${DOCKER_BUILD_PROXY}"
+  [ -z $DOCKER_NODE_VERSION ] || args="$arg --build-arg NODE_VERSION=${DOCKER_NODE_VERSION}"
   docker build $args -f "Dockerfile.$tag" -t ${SCOPE_NAME}:$tag .
 }
 
