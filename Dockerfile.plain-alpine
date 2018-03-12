@@ -13,5 +13,5 @@ ADD . /app
 
 USER nobody
 EXPOSE 8080
-CMD ["/usr/bin/node", "/app/index.js"]
+CMD ["/usr/local/bin/node", "/app/index.js"]
 

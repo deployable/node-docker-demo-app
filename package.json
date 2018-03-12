@@ -2,6 +2,7 @@
   "name": "node-docker-demo-app",
   "version": "1.0.0",
   "description": "A node app in docker with various supervisors",
+  "repository": "https://github.com/deployable/node-docker-demo-app.git",
   "main": "index.js",
   "scripts": {
     "test": "curl -s http://localhost:8080"

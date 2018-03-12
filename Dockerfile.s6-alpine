@@ -4,11 +4,12 @@ FROM node:$NODE_VERSION-alpine
 
 ARG DOCKER_BUILD_PROXY=""
 
+ENV OVERLAY_VERSION=v1.21.4.0
 RUN set -uex; \
     http_proxy=$DOCKER_BUILD_PROXY apk update; \
     http_proxy=$DOCKER_BUILD_PROXY apk add curl; \
-    curl --location https://github.com/just-containers/s6-overlay/releases/download/v1.18.1.5/s6-overlay-amd64.tar.gz.asc > /tmp/s6-overlay-amd64.tar.gz.asc; \
-    http_proxy=$DOCKER_BUILD_PROXY curl --location http://github.com/just-containers/s6-overlay/releases/download/v1.18.1.5/s6-overlay-amd64.tar.gz > /tmp/s6-overlay-amd64.tar.gz; \
+    curl --location https://github.com/just-containers/s6-overlay/releases/download/$OVERLAY_VERSION/s6-overlay-amd64.tar.gz.asc > /tmp/s6-overlay-amd64.tar.gz.asc; \
+    curl --location https://github.com/just-containers/s6-overlay/releases/download/$OVERLAY_VERSION/s6-overlay-amd64.tar.gz > /tmp/s6-overlay-amd64.tar.gz; \
     tar xzf /tmp/s6-overlay-amd64.tar.gz -C /; \
     rm -rf /tmp/*; \
     apk del curl;

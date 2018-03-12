@@ -6,8 +6,7 @@ WORKDIR /app
 ADD package.json /app
 RUN set -uex; \
     npm install --production; \
-    find /root; \
-    npm cache clean --force;
+    rm -rf /root/.npm;
 
 ADD . /app
 

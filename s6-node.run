@@ -1,2 +1,2 @@
 #!/usr/bin/execlineb -P
-s6-setuidgid nobody /usr/bin/node /app/index.js
+s6-setuidgid nobody /usr/local/bin/node /app/index.js
